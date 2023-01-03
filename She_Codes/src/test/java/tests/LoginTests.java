@@ -1,27 +1,14 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+public class LoginTests extends TestBase{
 
-public class LoginTests {
 
-    WebDriver wd;
 
-    @BeforeMethod
-    public void init(){
-        wd = new ChromeDriver();
-        wd.manage().window().maximize();
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wd.navigate().to("https://shecodesconnect.com/moodle/");
-
-    }
     @Test
     public void loginSuccess(){
         // open login form
@@ -43,6 +30,14 @@ public class LoginTests {
 
 
 
+    }
+    @Test
+    public void LoginSuccessNew(){
+        click(By.cssSelector("span[class='login'] a"));
+        type(By.xpath("(//input[@id='username'])[1]"),"elenavan");
+        type(By.xpath("(//input[@id='password'])[1]"),"Felia161075");
+        click(By.cssSelector("#loginbtn"));
+        Assert.assertTrue(isElementPresent(By.cssSelector("#actionmenuaction-4")));
     }
 
 
